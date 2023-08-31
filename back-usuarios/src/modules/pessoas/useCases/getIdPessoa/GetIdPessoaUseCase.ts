@@ -7,8 +7,8 @@ class GetIdPessoaUseCase{
     @inject("PessoaRepository")
     private pessoaRepository: IPessoaRepository)
     {}
-    async execute(id: string): Promise <void>{
-        await this.pessoaRepository.findById(id)
+    async execute(id: string): Promise <any>{
+      return  await this.pessoaRepository.findById(id)
     }
 }
 

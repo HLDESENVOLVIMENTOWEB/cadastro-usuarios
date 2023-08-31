@@ -8,9 +8,9 @@ class GetIdPessoaController{
 
         const getIdPessoaUseCase = container.resolve(GetIdPessoaUseCase);
     
-        await getIdPessoaUseCase.execute(id);
+        const res = await getIdPessoaUseCase.execute(id);
 
-        return response.status(201).send();
+        return response.status(201).send(res);
     }
 }
 

@@ -14,7 +14,7 @@ class UpdatePessoaUseCase{
          email,
          dataNascimento,
          id
-        }: ICreatePessoaDTO): Promise <void>{
+        }: ICreatePessoaDTO): Promise <any>{
 
         const userAlreadyExists = await this.pessoaRepository.findById(id);
 
@@ -23,7 +23,7 @@ class UpdatePessoaUseCase{
         }
         
         
-        await this.pessoaRepository.update({
+        return await this.pessoaRepository.update({
            nome,
            email,
            dataNascimento,

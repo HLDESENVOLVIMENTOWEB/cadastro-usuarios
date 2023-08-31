@@ -8,9 +8,9 @@ class CreatePessoaController{
 
         const createPessoaUseCase = container.resolve(CreatePessoaUseCase);
     
-        await createPessoaUseCase.execute({nome, email, dataNascimento});
+        const res = await createPessoaUseCase.execute({nome, email, dataNascimento});
 
-        return response.status(201).send();
+        return response.status(201).send(res);
     }
 }
 

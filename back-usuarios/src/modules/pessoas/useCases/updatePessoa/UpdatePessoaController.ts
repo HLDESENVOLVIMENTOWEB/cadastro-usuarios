@@ -9,9 +9,9 @@ class UpdatePessoaController{
 
         const updatePessoaUseCase = container.resolve(UpdatePessoaUseCase);
     
-        await updatePessoaUseCase.execute({nome, email, dataNascimento, id});
+        const res =await updatePessoaUseCase.execute({nome, email, dataNascimento, id});
 
-        return response.status(201).send();
+        return response.status(201).send(res);
     }
 }
 

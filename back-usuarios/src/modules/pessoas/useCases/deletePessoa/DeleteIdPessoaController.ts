@@ -8,9 +8,9 @@ class DeleteIdPessoaController{
 
         const deleteIdPessoaUseCase = container.resolve(DeleteIdPessoaUseCase);
     
-        await deleteIdPessoaUseCase.execute(id);
+        const res = await deleteIdPessoaUseCase.execute(id);
 
-        return response.status(201).send();
+        return response.status(201).send(res);
     }
 }
 
