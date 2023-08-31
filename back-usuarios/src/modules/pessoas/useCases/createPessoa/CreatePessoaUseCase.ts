@@ -13,7 +13,7 @@ class CreatePessoaUseCase{
          nome,
          email,
          dataNascimento
-        }: ICreatePessoaDTO): Promise <void>{
+        }: ICreatePessoaDTO): Promise <any>{
 
         const userAlreadyExists = await this.pessoaRepository.findByEmail(email);
 
@@ -22,7 +22,7 @@ class CreatePessoaUseCase{
         }
         
         
-        await this.pessoaRepository.create({
+        return await this.pessoaRepository.create({
            nome,
            email,
            dataNascimento 

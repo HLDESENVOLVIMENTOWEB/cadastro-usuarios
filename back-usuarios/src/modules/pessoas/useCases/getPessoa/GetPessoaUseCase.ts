@@ -7,8 +7,8 @@ class GetPessoaUseCase{
     @inject("PessoaRepository")
     private pessoaRepository: IPessoaRepository)
     {}
-    async execute(): Promise <void>{
-        await this.pessoaRepository.findAll()
+    async execute(): Promise <any>{
+      return  await this.pessoaRepository.findAll()
     }
 }
 

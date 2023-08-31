@@ -7,8 +7,8 @@ class DeleteIdPessoaUseCase{
     @inject("PessoaRepository")
     private pessoaRepository: IPessoaRepository)
     {}
-    async execute(id: string): Promise <void>{
-        await this.pessoaRepository.delete(id)
+    async execute(id: string): Promise <any>{
+      return  await this.pessoaRepository.delete(id)
     }
 }
 
