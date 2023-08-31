@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod';
 import { create } from "../services/usuarios";
+import { useNavigate } from "react-router-dom";
 
 interface FormProps {
     nome: string;
@@ -13,6 +14,7 @@ interface FormProps {
 }
 
 export function CreteUsers() {
+    const navigator = useNavigate()
 
     const newFormValidationSchema = zod.object({
         nome: zod.string().min(1, 'Nome obrigatório'),
@@ -37,6 +39,7 @@ export function CreteUsers() {
             email: data.email,
             nome: data.nome
         })
+        navigator('/')
     }
 
     return (

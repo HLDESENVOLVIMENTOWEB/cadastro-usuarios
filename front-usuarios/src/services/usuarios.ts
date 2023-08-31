@@ -24,7 +24,7 @@ type Usuarios = {
         },
       );
   
-      console.log(JSON.stringify(data, null, 4));
+      console.log(data);
   
       return data;
     } catch (error) {

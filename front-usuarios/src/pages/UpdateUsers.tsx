@@ -4,7 +4,9 @@ import { FormContainer, HomeContainer, TextInput } from "./usuario.styles";
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod';
-import { update } from "../services/usuarios";
+import { getPessoasId, update } from "../services/usuarios";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 
 interface FormProps {
     nome: string;
@@ -13,6 +15,8 @@ interface FormProps {
 }
 
 export function UpdateUsers() {
+     const {id} =useParams();
+     const navigator = useNavigate()
 
     const newFormValidationSchema = zod.object({
         nome: zod.string().min(1, 'Nome obrigatório'),
@@ -20,7 +24,7 @@ export function UpdateUsers() {
         dataNascimento: zod.string().min(1, 'Data de nascimento é obrigatório'),
     })
 
-    const { register, handleSubmit, formState } = useForm<FormProps>({
+    const { register, handleSubmit, formState, setValue } = useForm<FormProps>({
         resolver: zodResolver(newFormValidationSchema),
         defaultValues: {
             dataNascimento: '',
@@ -29,6 +33,17 @@ export function UpdateUsers() {
         }
     })
 
+    async function getIds(){
+      const res = await getPessoasId(String(id))
+      setValue('nome', res?.nome);
+      setValue('email', res?.email);
+      setValue('dataNascimento', res?.dataNascimento);
+      
+    }
+
+    useEffect(() => {
+        getIds()
+    }, [])
 
 
     function handleSubmitFiltro(data: FormProps) {
@@ -38,6 +53,7 @@ export function UpdateUsers() {
             nome: data.nome,
             id: '1'
         })
+        navigator('/')
     }
 
     return (
@@ -48,12 +64,12 @@ export function UpdateUsers() {
                 <TextInput type="text" id="nome" placeholder="Digite o nome" { ...register('nome') } />
 
                 <label htmlFor="">Email</label>
-                <TextInput type='email' id="email" placeholder="Digite o email" { ...register('email') } />
+                <TextInput type='email' id="email"  placeholder="Digite o email" { ...register('email') } />
 
-                <label htmlFor="">Data nascimento</label>
-                <TextInput type="date" id="dataNascimento"  placeholder="Digite a data de nascimento" { ...register('dataNascimento') }/>
+                <label htmlFor="">Data nascimento</label> 
+                <TextInput type="date" id="dataNascimento"    placeholder="Digite a data de nascimento" { ...register('dataNascimento') }/>
 
-                <Button />
+                <Button title="update" />
 
                 </FormContainer>
             </form>
