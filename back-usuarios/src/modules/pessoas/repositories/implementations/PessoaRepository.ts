@@ -19,8 +19,8 @@ class PessoaRepository implements IPessoaRepository{
         await this.repository.save(user);
     }
 
-    async findById(id: string): Promise<Pessoa> {
-        const pessoa = await this.repository.findOneBy({
+    async delete(id: string): Promise<any> {
+        const pessoa = await this.repository.delete({
             id
         });
         return pessoa;
@@ -35,6 +35,13 @@ class PessoaRepository implements IPessoaRepository{
 
     async findAll(): Promise<Pessoa[]> {
         const pessoa = await this.repository.find();
+        return pessoa;
+    }
+
+    async findById(id: string): Promise<Pessoa> {
+        const pessoa = await this.repository.findOneBy({
+            id
+        });
         return pessoa;
     }
 }

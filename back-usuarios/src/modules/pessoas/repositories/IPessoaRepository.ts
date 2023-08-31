@@ -6,6 +6,7 @@ interface IPessoaRepository{
     findById(id:string): Promise <Pessoa>;
     findByEmail(email:string): Promise <Pessoa>;
     findAll(): Promise<Pessoa[]>;
+    delete(id:string): Promise <Pessoa>;
 }
 
 export {IPessoaRepository}
