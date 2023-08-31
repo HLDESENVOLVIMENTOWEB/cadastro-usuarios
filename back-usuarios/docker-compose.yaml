@@ -1,18 +1,18 @@
-version: "3.7"
+version: "3.8"
 
 services:
-   database_ignite:
-      image: postgres
-      container_name: modulsusers
+   db:
+      image: postgres:14.1-alpine
+      container_name: usuarios
       restart: always
-      ports: 
-         - 5432:5432
       environment: 
-         - POSTGRES_USER=docker
-         - POSTGRES_PASSWORD=123123
-         - POSTGRES_DB=modulsusers
+         - POSTGRES_USER=postgres
+         - POSTGRES_PASSWORD=postgres
+         - POSTGRES_DB=modulousuarios
+      ports:
+         - '5432:5432'
       volumes: 
-         - pgdata:/data/postgres
+         - pgdata:/var/lib/postgresql/data
       network_mode: host
    app:
       build: .
