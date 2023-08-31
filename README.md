@@ -15,3 +15,10 @@ Back end
 - rodar a migration ou criar tabela 
 
 - npm run dev
+
+Melhorias que queria realizar
+
+  - Melhorar layout
+  - Swagger
+  - Inclementar validacoes mais detalhadas dos formularios
+  - testes unitários
