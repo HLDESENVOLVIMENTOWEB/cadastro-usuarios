@@ -1,17 +1,17 @@
 import { Router } from "express";
-import { CreatePessoaController } from "../modules/pessoas/useCases/createUser/CreatePessoaController";
+import { CreatePessoaController } from "../modules/pessoas/useCases/createPessoa/CreatePessoaController";
+import { GetPessoaController } from "../modules/pessoas/useCases/getPessoa/GetPessoaController";
+import { GetIdPessoaController } from "../modules/pessoas/useCases/getIdPessoa/GetIdPessoaController";
 
 const pessoasRoutes = Router();
 
 const createPessoaController = new CreatePessoaController();
+const getPessoaController = new GetPessoaController();
+const getIdPessoaController = new GetIdPessoaController();
 
-pessoasRoutes.get('/pessoas', (req, res) =>
-res.send("<h3>Litar Pessoas</h3>")
-);
+pessoasRoutes.get('/pessoas', getPessoaController.handle);
 
-pessoasRoutes.get('/pessoa/:id', (req, res) =>
-res.send("<h3>getId Pessoas</h3>")
-);
+pessoasRoutes.get('/pessoa/:id', getIdPessoaController.handle);
 
 pessoasRoutes.post('/pessoa', createPessoaController.handle);
 

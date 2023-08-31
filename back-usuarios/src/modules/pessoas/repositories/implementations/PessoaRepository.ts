@@ -32,6 +32,11 @@ class PessoaRepository implements IPessoaRepository{
         });
         return pessoa;
     }
+
+    async findAll(): Promise<Pessoa[]> {
+        const pessoa = await this.repository.find();
+        return pessoa;
+    }
 }
 
 export { PessoaRepository };
