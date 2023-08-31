@@ -6,7 +6,7 @@ import { AppError } from "../../../../errors/AppError";
 @injectable()
 class CreatePessoaUseCase{
     constructor(
-    @inject("UsersRepository")
+    @inject("PessoaRepository")
     private pessoaRepository: IPessoaRepository)
     {}
     async execute({
