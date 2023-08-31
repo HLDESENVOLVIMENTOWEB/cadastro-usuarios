@@ -19,6 +19,14 @@ class PessoaRepository implements IPessoaRepository{
         await this.repository.save(user);
     }
 
+    async update({nome, email, dataNascimento, id}: ICreatePessoaDTO): Promise<any> {
+        return this.repository.update({ 
+            nome,
+            email,
+            dataNascimento
+         }, { id: id });
+    }
+
     async delete(id: string): Promise<any> {
         const pessoa = await this.repository.delete({
             id
@@ -45,5 +53,7 @@ class PessoaRepository implements IPessoaRepository{
         return pessoa;
     }
 }
+
+
 
 export { PessoaRepository };
