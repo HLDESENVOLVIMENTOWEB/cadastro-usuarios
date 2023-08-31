@@ -7,6 +7,7 @@ interface IPessoaRepository{
     findByEmail(email:string): Promise <Pessoa>;
     findAll(): Promise<Pessoa[]>;
     delete(id:string): Promise <Pessoa>;
+    update({nome, email, dataNascimento, id}: ICreatePessoaDTO): Promise<any>
 }
 
 export {IPessoaRepository}
