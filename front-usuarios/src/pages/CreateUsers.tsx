@@ -4,6 +4,7 @@ import { FormContainer, HomeContainer, TextInput } from "./usuario.styles";
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod';
+import { create } from "../services/usuarios";
 
 interface FormProps {
     nome: string;
@@ -31,7 +32,11 @@ export function CreteUsers() {
 
 
     function handleSubmitFiltro(data: FormProps) {
-        
+        create({
+            dataNascimento: data.dataNascimento,
+            email: data.email,
+            nome: data.nome
+        })
     }
 
     return (

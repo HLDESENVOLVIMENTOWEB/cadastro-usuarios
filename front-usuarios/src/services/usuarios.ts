@@ -2,7 +2,7 @@ import { instance } from './index'
 
 
 type Usuarios = {
-    id?: number;
+    id?: string;
     nome: string;
     email: string;
     dataNascimento: string;
@@ -12,7 +12,7 @@ type Usuarios = {
     data: Usuarios[];
   };
 
-async function getPessoas() {
+   async function getPessoas() {
     try {
       // 👇️ const data: GetUsersResponse
       const { data } = await instance.get<GetUsuariosResponse>(

@@ -4,6 +4,7 @@ import { FormContainer, HomeContainer, TextInput } from "./usuario.styles";
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as zod from 'zod';
+import { update } from "../services/usuarios";
 
 interface FormProps {
     nome: string;
@@ -31,7 +32,12 @@ export function UpdateUsers() {
 
 
     function handleSubmitFiltro(data: FormProps) {
-        
+        update({
+            dataNascimento: data.dataNascimento,
+            email: data.email,
+            nome: data.nome,
+            id: '1'
+        })
     }
 
     return (

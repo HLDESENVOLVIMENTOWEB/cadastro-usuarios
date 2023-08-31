@@ -1,10 +1,8 @@
-import { Button } from "../components/Button/button";
 import { Table } from "../components/table/table";
-import { FormContainer, HomeContainer, TableContainer, TextInput } from "./usuario.styles";
+import { HomeContainer, TableContainer } from "./usuario.styles";
 
-import { useForm } from 'react-hook-form'
-import { zodResolver } from '@hookform/resolvers/zod'
-import * as zod from 'zod';
+import { useEffect, useState } from "react";
+import { getPessoas } from "../services/usuarios";
 
 interface FormProps {
     nome: string;
@@ -13,45 +11,19 @@ interface FormProps {
 }
 
 export function Home() {
+    const [pessoas, setPessoas] = useState<FormProps[]>([])
 
-    const newFormValidationSchema = zod.object({
-        nome: zod.string().min(1, 'Nome obrigatório'),
-        email: zod.string().min(1, 'Email é obrigatório'),
-        dataNascimento: zod.string().min(1, 'Data de nascimento é obrigatório'),
-    })
+    async  function getAll(){
+        const res = await getPessoas()
+        console.log(res)
+    } 
 
-    const { register, handleSubmit, formState } = useForm<FormProps>({
-        resolver: zodResolver(newFormValidationSchema),
-        defaultValues: {
-            dataNascimento: '',
-            email: '',
-            nome: ''
-        }
-    })
-
-
-
-    function handleSubmitFiltro(data: FormProps) {
-        
-    }
+    useEffect(()=> {
+        getAll()
+    },[])
 
     return (
         <HomeContainer>
-            <form onSubmit={handleSubmit(handleSubmitFiltro)} action="">
-                <FormContainer>
-                <label htmlFor="">Nome</label>
-                <TextInput type="text" id="nome" placeholder="Digite o nome" { ...register('nome') } />
-
-                <label htmlFor="">Email</label>
-                <TextInput type='email' id="email" placeholder="Digite o email" { ...register('email') } />
-
-                <label htmlFor="">Data nascimento</label>
-                <TextInput type="date" id="dataNascimento"  placeholder="Digite a data de nascimento" { ...register('dataNascimento') }/>
-
-                <Button />
-
-                </FormContainer>
-            </form>
 
             <TableContainer>
                <Table  data={[
