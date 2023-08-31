@@ -1,7 +1,8 @@
+import { Button } from "../Button/button";
 import { StyledTable } from "./table.styles";
 
 interface User {
-    id: number;
+    id: string;
     nome: string;
     email: string;
     dataNascimento: string;
@@ -9,20 +10,24 @@ interface User {
 
 interface DataProps {
     data: User[]
+    handleUpdate: any;
+    handleDeletar: any;
 }
 
 interface TableMarkupProps {
     titles: any,
     data: User[]
+    handleUpdate: any;
+    handleDeletar: any;
 }
 
-const titles = ['Id', 'Nome', 'E-mail', 'Data nascimento'];
+const titles = ['Id', 'Nome', 'E-mail', 'Data nascimento', 'deletar', 'editar'];
 
-export function Table({ data }: DataProps) {
-    return <TableMarkup titles={titles} data={data} />
+export function Table({ data, handleUpdate, handleDeletar }: DataProps) {
+    return <TableMarkup titles={titles} data={data} handleUpdate={handleUpdate} handleDeletar={handleDeletar} />
 }
 
-const TableMarkup = ({ titles, data }: TableMarkupProps) => (
+const TableMarkup = ({ titles, data, handleUpdate, handleDeletar }: TableMarkupProps) => (
     <StyledTable>
       <thead>
         <tr>
@@ -38,6 +43,8 @@ const TableMarkup = ({ titles, data }: TableMarkupProps) => (
               <td key={index}>{item.nome}</td>
               <td key={index}>{item.email}</td>
               <td key={index}>{item.nome}</td>
+              <td  key={index}><Button click={()=>handleDeletar(item.id)} title="deletar"/></td>
+              <td key={index}><Button click={()=>handleUpdate(item.id)} title="editar"/></td>
           </tr>
         ))}
       </tbody>
